@@ -98,7 +98,7 @@ if (ans.next === "View Status") {
     console.log(`Student's Enrollment number is : ${enrollmentNumber}`);
     console.log(`Student's Course is : ${answers.course}`);
     console.log(`Course Fee Paid : ${paymentMethod.amount}`);
-    console.log(`Student Balance is : ${myBalance += paymentMethod.amount}`);
+    console.log(`Student Balance is : ${myBalance}`);
 } else {
     console.log(chalk.yellowBright("Thank You for visiting and Enrolloing!"))
 }
