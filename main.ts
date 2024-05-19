@@ -21,7 +21,6 @@ let answers = await inquirer.prompt(
                 return "Please enter student name"
             }
         },
-
         {
             name : "course",
             type : "list",
@@ -51,18 +50,30 @@ let paymentMethod = await inquirer.prompt(
         {
             name : "account no.",
             type : "input",
-            message : "Enter you account number:"
-        },
+            message : "Enter your account number:",
+              validate : function(value) {
+                if (value.trim() !== "") { 
+                    return true;
+                } else {
+                    console.log("Please Enter Account Number");
+                } 
+              }    
+            },
 
         {
             name : "amount",
             type : "input", 
-            message : "Enter Your Amount:",
+            message : "Enter Amount:",
             validate : function(value) {
-                if (value.trim() !== "") {
+                if (value.trim() !== "") { 
                     return true;
+                } 
+                else {
+                    console.log("Please Enter an Amount");
+                } 
+                if (value.amount < courseFee) {
+                    console.log(chalk.redBright("You paid an insufficient Amount"));
                 }
-                return "Please enter an amount"
             }
         }
     ]
@@ -94,11 +105,12 @@ let ans = await inquirer.prompt(
     ]
 )
 if (ans.next === "View Status") {
-    console.log(`Student Name is : ${answers}`);
-    console.log(`Student's Enrollment number is : ${enrollmentNumber}`);
-    console.log(`Student's Course is : ${answers.course}`);
+    console.log(`Student Name: ${answers.student}`);
+    console.log(`Student's Enrollment number: ${enrollmentNumber}`);
+    console.log(`Student's Course: ${answers.course}`);
     console.log(`Course Fee Paid : ${paymentMethod.amount}`);
     console.log(`Student Balance is : ${myBalance}`);
+    console.log(chalk.yellowBright("Thank You for visiting and Enrolloing!"))
 } else {
     console.log(chalk.yellowBright("Thank You for visiting and Enrolloing!"))
 }
